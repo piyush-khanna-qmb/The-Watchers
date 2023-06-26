@@ -13,5 +13,7 @@ while True:
 
     if naya-prev >= 3 and got:
 
-        os.startfile("C:\Windows\system32\cmd.exe")
+        # os.startfile("C:\Windows\system32\cmd.exe")
+        pag.hotkey('ctrl', 'win', 'right')
+
         prev= time.time()

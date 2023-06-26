@@ -33,16 +33,14 @@ void setup() {
   // Ye ji banega Hot-sapot
   WiFi.softAP(ssid, password);
   IPAddress localIP = WiFi.softAPIP();
-  Serial.print("Hotspot IP address: ");
-  Serial.println(localIP);
 
-  // Start the server
   server.begin();
 }
 
-void loop() {
-  // Check if a new client is available
-  if (!client.connected()) {
+void loop()
+{
+  if (!client.connected())
+  {
     client = server.available();
     delay(1);
   }
@@ -55,20 +53,21 @@ void loop() {
 
   unsigned long duration = pulseIn(echoPin, HIGH);
   float distance = duration * 0.034 / 2;
-  Serial.println(distance);
+//  Serial.println(distance);
 
-  if (distance < distanceThreshold) {
-    Serial.println("Intrusion alert!");
-
-    // Send "Hello" message to the client
-    if (client.connected()) {
+  if (distance < distanceThreshold) 
+  {
+//    Serial.println("Intrusion alert!");
+    if (client.connected()) 
+    {
       client.println("Hi");
     }
     delay(100);
   }
 
-  if (!client.connected()) {
+  if (!client.connected()) 
+  {
     client.stop();
-    Serial.println("Client disconnected");
+//    Serial.println("Client disconnected");
   }
 }

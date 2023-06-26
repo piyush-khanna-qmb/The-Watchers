@@ -28,32 +28,32 @@ void setup() {
   client.setTimeout(5000);
 }
 
-void loop() {
-  // Check if the client is not connected or has disconnected
-  if (!client.connected()) {
-    // Connect to the server
-    if (client.connect(serverIP, serverPort)) {
+void loop() 
+{
+  if (!client.connected()) 
+  {
+    if (client.connect(serverIP, serverPort)) 
+    {
       Serial.println("Connected to server");
-
-      // Request data from the server
       client.println("GET / HTTP/1.1");
       client.println("Host: " + String(serverIP));
       client.println("Connection: close");
       client.println();
-    } else {
+    } 
+    else 
+    {
       Serial.println("Connection to server failed");
     }
   }
 
-  // Read the server response
-  while (client.available()) {
+  while (client.available()) 
+  {
     String response = client.readStringUntil('\n');
     Serial.println("Received message: " + response);
-    // Add your code here to process the received message as needed
   }
 
-  // Close the connection if the server has disconnected
-  if (!client.connected()) {
+  if (!client.connected()) 
+  {
     client.stop();
     Serial.println("Server disconnected");
   }
